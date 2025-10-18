@@ -52,7 +52,7 @@ function Home() {
               href="mailto:contact@2mscorporation.com"
               className="text-blue-600 hover:text-blue-800 font-semibold"
             >
-              contact@2mscorporation.com
+              megha@2mscorporation.com
             </a>
           </p>
         </section>
