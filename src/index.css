@@ -30,6 +30,19 @@ body {
   transform: none;
 }
 
+/* layered shadow that keeps light text readable over the bright 3D scene */
+.text-glow-dark {
+  text-shadow:
+    0 1px 3px rgba(6, 16, 33, 0.95),
+    0 4px 18px rgba(6, 16, 33, 0.8),
+    0 10px 40px rgba(6, 16, 33, 0.6);
+}
+
+/* but not on buttons/pills — a dark glow under dark-on-gold labels reads as smudge */
+.text-glow-dark a {
+  text-shadow: none;
+}
+
 @keyframes bounce-soft {
   0%,
   100% {

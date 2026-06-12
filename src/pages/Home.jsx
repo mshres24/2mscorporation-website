@@ -210,26 +210,33 @@ function Hero({ ready }) {
     <section
       ref={sectionRef}
       id="top"
-      className="relative z-10 flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-20 text-center [text-shadow:0_2px_18px_rgba(8,24,48,0.85)]"
+      className="text-glow-dark relative z-10 flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-20 text-center"
     >
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 58% 52% at 50% 48%, rgba(6,16,33,0.5), rgba(6,16,33,0) 75%)',
+        }}
+      />
       <span
         data-hero-fade
-        className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-gold sm:text-sm"
+        className="relative text-xs font-semibold uppercase tracking-[0.35em] text-brand-gold sm:text-sm"
       >
         Transportation Program Management &amp; Advisory
       </span>
       <h1
         data-hero-fade
-        className="mt-8 max-w-5xl font-serif text-5xl leading-[1.05] text-cream sm:text-7xl lg:text-8xl"
+        className="relative mt-8 max-w-5xl font-serif text-5xl leading-[1.05] text-cream sm:text-7xl lg:text-8xl"
       >
         Moving people <em className="text-brand-gold">forward.</em>
       </h1>
-      <p data-hero-fade className="mt-8 max-w-2xl text-base leading-relaxed text-cream/60 sm:text-lg">
+      <p data-hero-fade className="relative mt-8 max-w-2xl text-base leading-relaxed text-cream/90 sm:text-lg">
         2MS Corporation partners with transit agencies, owners, and project sponsors to plan,
         manage, and deliver light rail, high-speed rail, and public transportation programs — on
         budget, on schedule, with the rigor of licensed engineering leadership.
       </p>
-      <div data-hero-fade className="mt-12 flex flex-wrap justify-center gap-4">
+      <div data-hero-fade className="relative mt-12 flex flex-wrap justify-center gap-4">
         <a
           href="#leadership"
           className="inline-flex items-center rounded-full bg-brand-gold px-7 py-3 font-semibold text-ink transition-colors hover:bg-brand-gold-dark"
@@ -290,30 +297,40 @@ function Chapter({ eyebrow, lines, caption }) {
     <section
       ref={ref}
       aria-hidden="true"
-      className="relative z-10 px-4 py-36 text-center sm:py-52 [text-shadow:0_2px_20px_rgba(8,24,48,0.9)]"
+      className="text-glow-dark relative z-10 px-4 py-36 text-center sm:py-52"
     >
-      {eyebrow && (
-        <div
-          data-line
-          className="mb-6 text-xs font-semibold uppercase tracking-[0.35em] text-brand-gold"
-        >
-          {eyebrow}
-        </div>
-      )}
-      {lines.map((l) => (
-        <div
-          key={l}
-          data-line
-          className="font-serif text-5xl leading-tight text-cream sm:text-7xl lg:text-8xl"
-        >
-          {l}
-        </div>
-      ))}
-      {caption && (
-        <p data-line className="mx-auto mt-8 max-w-xl text-sm text-cream/50 sm:text-base">
-          {caption}
-        </p>
-      )}
+      {/* scrim: dims the scene right behind the headline so it stays readable */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 62% 58% at 50% 50%, rgba(6,16,33,0.6), rgba(6,16,33,0) 74%)',
+        }}
+      />
+      <div className="relative">
+        {eyebrow && (
+          <div
+            data-line
+            className="mb-6 text-xs font-semibold uppercase tracking-[0.35em] text-brand-gold"
+          >
+            {eyebrow}
+          </div>
+        )}
+        {lines.map((l) => (
+          <div
+            key={l}
+            data-line
+            className="font-serif text-5xl leading-tight text-cream sm:text-7xl lg:text-8xl"
+          >
+            {l}
+          </div>
+        ))}
+        {caption && (
+          <p data-line className="mx-auto mt-8 max-w-xl text-sm text-cream/90 sm:text-base">
+            {caption}
+          </p>
+        )}
+      </div>
     </section>
   )
 }
@@ -330,7 +347,7 @@ function Leadership() {
           <h2 className="mt-4 font-serif text-4xl leading-tight text-cream sm:text-6xl">
             The engineer at the helm
           </h2>
-          <p className="mt-5 text-lg text-cream/60">
+          <p className="mt-5 text-lg text-cream/80">
             2MS Corporation is led personally by its founder, a hands-on Professional Engineer who
             works directly with clients on every engagement.
           </p>
@@ -501,7 +518,7 @@ function Services() {
             Services
           </span>
           <h2 className="mt-4 font-serif text-4xl text-cream sm:text-5xl">What we do</h2>
-          <p className="mt-4 text-lg text-cream/60">
+          <p className="mt-4 text-lg text-cream/80">
             We bring decades of rail and transit experience to every phase of a capital program,
             from early planning through revenue service.
           </p>
@@ -536,22 +553,29 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="relative z-10 px-4 py-28 text-center sm:py-40 [text-shadow:0_2px_18px_rgba(8,24,48,0.85)]"
+      className="text-glow-dark relative z-10 px-4 py-28 text-center sm:py-40"
     >
-      <Reveal>
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(6,16,33,0.55), rgba(6,16,33,0) 75%)',
+        }}
+      />
+      <Reveal className="relative">
         {/* diamond emblem, EverSwap-outro style */}
         <div className="mx-auto h-36 w-36 rotate-45 overflow-hidden rounded-3xl border border-brand-gold/40 bg-white p-3 shadow-[0_0_60px_rgba(245,166,35,0.25)]">
           <div className="flex h-full w-full -rotate-45 scale-125 items-center justify-center">
             <img src="/2ms-logo.png" alt="2MS Corporation" className="w-28" />
           </div>
         </div>
-        <div className="mt-14 text-sm uppercase tracking-[0.35em] text-cream/50">
+        <div className="mt-14 text-sm uppercase tracking-[0.35em] text-cream/80">
           Stay on schedule
         </div>
         <h2 className="mt-4 font-serif text-5xl text-cream sm:text-7xl">
           Move with <span className="text-brand-gold">2MS</span>
         </h2>
-        <p className="mx-auto mt-6 max-w-2xl text-cream/60">
+        <p className="mx-auto mt-6 max-w-2xl text-cream/90">
           Whether you&rsquo;re scoping a new transit study, looking for independent program
           oversight, or planning the next phase of a rail initiative, we&rsquo;d like to hear
           about it.
