@@ -1,10 +1,9 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 
-/** EverSwap-style entry: a serif percentage counts up, then the veil lifts. */
+/** Brief entry veil: covers the first paint, then lifts to reveal the scene. */
 export default function Loader({ onDone }) {
   const veilRef = useRef(null)
-  const numRef = useRef(null)
   const doneRef = useRef(onDone)
   doneRef.current = onDone
 
@@ -23,23 +22,14 @@ export default function Loader({ onDone }) {
       }
     }
 
-    const counter = { v: 0 }
     const tl = gsap.timeline()
-    tl.to(counter, {
-      v: 100,
-      duration: 1.6,
-      ease: 'power2.inOut',
-      onUpdate: () => {
-        if (numRef.current) numRef.current.textContent = `${Math.round(counter.v)}%`
-      },
+    tl.to(veilRef.current, {
+      yPercent: -100,
+      duration: 0.9,
+      ease: 'power4.inOut',
+      delay: 0.35,
+      onComplete: release,
     })
-      .to(numRef.current, { autoAlpha: 0, y: -24, duration: 0.35, ease: 'power2.in' }, '+=0.1')
-      .to(veilRef.current, {
-        yPercent: -100,
-        duration: 0.9,
-        ease: 'power4.inOut',
-        onComplete: release,
-      })
 
     return () => {
       document.body.style.overflow = ''
@@ -47,11 +37,5 @@ export default function Loader({ onDone }) {
     }
   }, [])
 
-  return (
-    <div ref={veilRef} className="fixed inset-0 z-[100] flex items-end justify-center bg-ink pb-20">
-      <span ref={numRef} className="font-serif text-5xl sm:text-6xl text-cream tabular-nums">
-        0%
-      </span>
-    </div>
-  )
+  return <div ref={veilRef} className="fixed inset-0 z-[100] bg-ink" />
 }
