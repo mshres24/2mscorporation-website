@@ -14,9 +14,13 @@ export default {
           gold: '#f5a623',
           'gold-dark': '#d18a12',
         },
+        ink: '#081830',
+        'ink-light': '#0c2347',
+        cream: '#f5f1e6',
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
       },
     },
   },
