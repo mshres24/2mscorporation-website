@@ -26,3 +26,6 @@ public/everswap.mp4
 *.njsproj
 *.sln
 *.sw?
+
+# local env (the apply endpoint URL; set the same var in the hosting build env)
+.env

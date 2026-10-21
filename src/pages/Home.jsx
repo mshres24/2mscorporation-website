@@ -5,6 +5,8 @@ import Loader from '../components/Loader'
 import SceneJourney from '../components/SceneJourney'
 import ProgressDots from '../components/ProgressDots'
 import Reveal from '../components/Reveal'
+import NavBar from '../components/NavBar'
+import Footer from '../components/Footer'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -103,94 +105,6 @@ const stops = [
   { id: 'services', label: 'Services' },
   { id: 'contact', label: 'Contact' },
 ]
-
-function NavBar() {
-  const [open, setOpen] = useState(false)
-  const [active, setActive] = useState('')
-  const links = [
-    { href: '#leadership', label: 'Leadership' },
-    { href: '#about', label: 'About' },
-    { href: '#services', label: 'Services' },
-    { href: '#contact', label: 'Contact' },
-  ]
-
-  useEffect(() => {
-    const sections = links.map((l) => document.querySelector(l.href)).filter(Boolean)
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(`#${entry.target.id}`)
-        })
-      },
-      { rootMargin: '-35% 0px -55% 0px' }
-    )
-    sections.forEach((s) => observer.observe(s))
-    return () => observer.disconnect()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-cream/10 bg-ink/70 backdrop-blur">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#top" className="flex items-center gap-3">
-          <span className="rounded-lg bg-white p-1.5">
-            <img src="/2ms-logo.png" alt="2MS Corporation" className="h-11 w-auto sm:h-12" />
-          </span>
-        </a>
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className={`relative text-sm font-medium transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:rounded-full after:bg-brand-gold after:transition-all after:duration-300 ${
-                active === l.href
-                  ? 'text-cream after:w-full'
-                  : 'text-cream/60 hover:text-cream after:w-0 hover:after:w-full'
-              }`}
-            >
-              {l.label}
-            </a>
-          ))}
-          <a
-            href="#contact"
-            className="inline-flex items-center rounded-full bg-brand-gold px-5 py-2 text-sm font-semibold text-ink transition-colors hover:bg-brand-gold-dark"
-          >
-            Start a Conversation
-          </a>
-        </nav>
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="p-2 text-cream md:hidden"
-          aria-label="Toggle menu"
-        >
-          <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            {open ? (
-              <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" />
-            ) : (
-              <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
-            )}
-          </svg>
-        </button>
-      </div>
-      {open && (
-        <div className="border-t border-cream/10 bg-ink md:hidden">
-          <div className="flex flex-col gap-2 px-4 py-3">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="py-2 text-cream/70 hover:text-cream"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-    </header>
-  )
-}
 
 function Hero({ ready }) {
   const sectionRef = useRef(null)
@@ -604,25 +518,6 @@ function Contact() {
         </div>
       </Reveal>
     </section>
-  )
-}
-
-function Footer() {
-  return (
-    <footer className="relative z-10 border-t border-cream/10 bg-ink/70 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-8 text-sm text-cream/40 sm:px-6 lg:px-8">
-        <span>&copy; {new Date().getFullYear()} 2MS Corporation. All rights reserved.</span>
-        <div className="flex flex-wrap gap-6">
-          <a className="transition-colors hover:text-brand-gold" href="mailto:pranaya@2mscorp.com">
-            pranaya@2mscorp.com
-          </a>
-          <a className="transition-colors hover:text-brand-gold" href="mailto:megha@2mscorp.com">
-            megha@2mscorp.com
-          </a>
-        </div>
-        <span>Transportation Program Management &amp; Advisory</span>
-      </div>
-    </footer>
   )
 }
 
